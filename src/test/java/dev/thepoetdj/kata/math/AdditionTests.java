@@ -50,4 +50,9 @@ public class AdditionTests {
                 () -> sut.add("-1,-3,42"));
         assertEquals("negative numbers not allowed -1, -3", actualException.getMessage());
     }
+
+    @Test
+    void skipNumbersLargerThanThousand() {
+        assertEquals(2, sut.add("2,1001"));
+    }
 }

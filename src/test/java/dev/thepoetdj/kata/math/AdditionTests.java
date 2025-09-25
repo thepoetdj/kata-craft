@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.CsvSources;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AdditionTests {
     Calculator sut;
@@ -35,5 +36,10 @@ public class AdditionTests {
     @Test
     void addNumbersSeparatedByCustomDelimiters() {
         assertEquals(3, sut.add("//;\n1;2"));
+    }
+
+    @Test
+    void doNotAddNumbersWithNegativeValue() {
+        assertThrows(Exception.class, () -> sut.add("-1,-3,42"));
     }
 }

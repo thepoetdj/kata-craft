@@ -13,7 +13,9 @@ public class Calculator {
                 .filter(this::isNegative)
                 .toList();
         if (!negatives.isEmpty()) {
-            throw new IllegalArgumentException();
+            String allNegatives = negatives.toString();
+            throw new IllegalArgumentException("negative numbers not allowed "
+                    + allNegatives.substring(1, allNegatives.length() - 1));
         }
         return actualNumbers.stream().reduce(Integer::sum).orElse(0);
     }

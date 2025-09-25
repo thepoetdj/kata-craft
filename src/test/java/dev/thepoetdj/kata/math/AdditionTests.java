@@ -42,4 +42,12 @@ public class AdditionTests {
     void doNotAddNumbersWithNegativeValue() {
         assertThrows(Exception.class, () -> sut.add("-1,-3,42"));
     }
+
+    @Test
+    void checkAllNegativeNumbersAreCaptured() {
+        IllegalArgumentException actualException = assertThrows(
+                IllegalArgumentException.class,
+                () -> sut.add("-1,-3,42"));
+        assertEquals("negative numbers not allowed -1, -3", actualException.getMessage());
+    }
 }

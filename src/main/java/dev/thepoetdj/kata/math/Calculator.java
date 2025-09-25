@@ -3,7 +3,7 @@ package dev.thepoetdj.kata.math;
 import java.util.Arrays;
 
 public class Calculator {
-    private static final String DEFAULT_SEPARATOR = ",";
+    private static final String DEFAULT_SEPARATOR = "[\n,]";
 
     public int add(String numbers) {
         if (numbers.isBlank()) return 0;

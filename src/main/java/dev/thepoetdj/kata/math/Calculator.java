@@ -17,7 +17,9 @@ public class Calculator {
             throw new IllegalArgumentException("negative numbers not allowed "
                     + allNegatives.substring(1, allNegatives.length() - 1));
         }
-        return actualNumbers.stream().reduce(Integer::sum).orElse(0);
+        return actualNumbers.stream()
+                .filter(this::boundedRange)
+                .reduce(Integer::sum).orElse(0);
     }
 
     private List<Integer> toNumeric(String numbers) {
@@ -39,5 +41,9 @@ public class Calculator {
 
     private boolean isNegative(int number) {
         return number < 0;
+    }
+
+    private boolean boundedRange(int number) {
+        return number <= 1000;
     }
 }

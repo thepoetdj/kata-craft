@@ -20,6 +20,7 @@ public class AdditionTests {
             @CsvSource("'',0"),
             @CsvSource("'1',1"),
             @CsvSource("'1,5',6"),
+            @CsvSource("'1,6,7,3,2',19")
     })
     void addNumbersSeparatedByComma(String numbers, int result) {
         assertEquals(result, sut.add(numbers));

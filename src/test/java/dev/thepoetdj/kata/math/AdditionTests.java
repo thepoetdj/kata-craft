@@ -1,6 +1,7 @@
 package dev.thepoetdj.kata.math;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.CsvSources;
@@ -24,5 +25,10 @@ public class AdditionTests {
     })
     void addNumbersSeparatedByComma(String numbers, int result) {
         assertEquals(result, sut.add(numbers));
+    }
+
+    @Test
+    void addNumbersSeparatedByNewline() {
+        assertEquals(6, sut.add("1\n2,3"));
     }
 }

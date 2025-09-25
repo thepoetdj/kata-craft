@@ -31,4 +31,9 @@ public class AdditionTests {
     void addNumbersSeparatedByNewline() {
         assertEquals(6, sut.add("1\n2,3"));
     }
+
+    @Test
+    void addNumbersSeparatedByCustomDelimiters() {
+        assertEquals(3, sut.add("//;\n1;2"));
+    }
 }

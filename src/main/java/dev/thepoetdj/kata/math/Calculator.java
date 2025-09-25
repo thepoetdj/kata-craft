@@ -1,18 +1,27 @@
 package dev.thepoetdj.kata.math;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 public class Calculator {
     public int add(String numbers) {
         if (numbers.isBlank()) return 0;
-        return toNumeric(numbers).sum();
+        List<Integer> actualNumbers = toNumeric(numbers);
+        List<Integer> negatives = actualNumbers.stream()
+                .filter(this::isNegative)
+                .toList();
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        return actualNumbers.stream().reduce(Integer::sum).orElse(0);
     }
 
-    private IntStream toNumeric(String numbers) {
-        return Arrays.stream(splitter(numbers)).mapToInt(Integer::parseInt);
+    private List<Integer> toNumeric(String numbers) {
+        return Arrays.stream(splitter(numbers))
+                .mapToInt(Integer::parseInt)
+                .boxed().toList();
     }
 
     private String[] splitter(String input) {
@@ -24,5 +33,9 @@ public class Calculator {
             return customDelimiter.group(2).split(delimiter);
         }
         return input.split(delimiter);
+    }
+
+    private boolean isNegative(int number) {
+        return number < 0;
     }
 }

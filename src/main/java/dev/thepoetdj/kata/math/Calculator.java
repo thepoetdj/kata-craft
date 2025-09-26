@@ -30,11 +30,11 @@ public class Calculator {
 
     private String[] splitter(String input) {
         String delimiter = "[\n,]";
-        Matcher customDelimiter = Pattern.compile("//(.)\\R(.*)", Pattern.DOTALL)
+        Matcher customDelimiter = Pattern.compile("//(.+)\\R(.*)", Pattern.DOTALL)
                 .matcher(input);
         if (customDelimiter.matches()) {
             delimiter = customDelimiter.group(1);
-            return customDelimiter.group(2).split(delimiter);
+            return customDelimiter.group(2).split(Pattern.quote(delimiter));
         }
         return input.split(delimiter);
     }

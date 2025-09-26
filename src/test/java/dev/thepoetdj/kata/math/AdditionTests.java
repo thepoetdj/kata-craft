@@ -55,4 +55,9 @@ public class AdditionTests {
     void skipNumbersLargerThanThousand() {
         assertEquals(2, sut.add("2,1001"));
     }
+
+    @Test
+    void allowCustomDelimitersWithVaryingLength() {
+        assertEquals(6, sut.add("//***\n1***2***3"));
+    }
 }
